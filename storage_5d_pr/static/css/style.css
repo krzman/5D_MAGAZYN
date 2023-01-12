@@ -1,6 +1,9 @@
 /* Elementy */
 
-header {
+
+/* Klasy */
+
+.header_login {
     top: 0;
     width: 100%;
     height: 200px;
@@ -10,9 +13,18 @@ header {
     position: fixed;
 }
 
-/* Klasy */
+.header_main {
+    top: 0;
+    width: 100%;
+    height: 100px;
+    background-image: url("../img/logo.jpg");
+    background-size: 10%;
+    background-repeat: no-repeat;
+    background-position: left;
+    position: fixed;
+}
 
-.login{
+.login {
     height: auto;
     width: 400px;
     text-align: center;
@@ -22,6 +34,6 @@ header {
     margin-left: -200px;
     border: 3px ridge #eaeaea;
     border-radius: 8px;
-    background-color: rgba(255,255,255,0.9);
+    background-color: rgba(105, 105, 105, 0.9);
 
 }

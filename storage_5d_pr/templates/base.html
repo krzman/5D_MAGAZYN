@@ -7,9 +7,14 @@
     <title>5D Magazyn</title>
 </head>
 <body>
-<header>
-
-</header>
+{% if user.is_authenticated %}
+    <header class="header_main">
+    <a href="{% url 'logout' %}" class="link"><div class="menu btn_gray"><div class="menu_str"> Wyloguj</div></div> </a>
+    </header>
+{% else %}
+    <header class="header_login">
+    </header>
+{% endif %}
 {% block content %}
     Coś nie działa
 {% endblock %}

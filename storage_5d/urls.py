@@ -19,5 +19,6 @@ from storage_5d_pr.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', Main.as_view(), name='main')
+    path('', Login.as_view(), name='login'),
+    path('logout/', Logout.as_view(), name='logout'),
 ]
