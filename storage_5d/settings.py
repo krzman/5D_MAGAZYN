@@ -20,7 +20,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-0m8s)(6!^w7!n7-pvxx$$i2qe3ts&dv@99f&(x+k5at8+g9#0*'
+try:
+    from storage_5d.local_settings import SECRET_KEY
+except FileNotFoundError as error:
+    print(error)
+    exit(0)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -73,14 +77,11 @@ WSGI_APPLICATION = 'storage_5d.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'storage',
-        'USER': 'storage',
-        'PASSWORD': '5D_Luans',
-    }
-}
+try:
+    from storage_5d.local_settings import DATABASES
+except FileNotFoundError as error:
+    print(error)
+    exit(0)
 
 
 # Password validation
