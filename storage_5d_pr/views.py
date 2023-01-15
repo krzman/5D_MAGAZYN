@@ -4,7 +4,6 @@ from django.views import View
 from django.contrib.auth import authenticate, login, logout
 
 # Import project module
-from storage_5d_pr.templates import *
 from storage_5d_pr.forms import *
 
 
@@ -13,8 +12,7 @@ from storage_5d_pr.forms import *
 class Login(View):
     def get(self, request):
         if request.user.is_authenticated:
-            context = {'mess': 'Zalogowany'}
-            return render(request, 'login.html', context=context)
+            return render(request, 'login.html')
         else:
             form = FormLogin()
             context = {'form': form}
@@ -35,7 +33,8 @@ class Login(View):
         }
         return render(request, 'login.html', context=context)
 
+
 class Logout(View):
-    def get(self,request):
+    def get(self, request):
         logout(request)
         return redirect('login')
