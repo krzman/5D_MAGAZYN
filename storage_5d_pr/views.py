@@ -1,10 +1,14 @@
 # Import django module
 from django.shortcuts import render, redirect
 from django.views import View
+from django.views.generic import CreateView
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse_lazy
 
 # Import project module
 from storage_5d_pr.forms import *
+from storage_5d_pr.models import *
 
 
 # Create your views here.
@@ -38,3 +42,17 @@ class Logout(View):
     def get(self, request):
         logout(request)
         return redirect('login')
+
+
+# class ToolsAdd(LoginRequiredMixin, CreateView):
+#     login_url = '/login/'
+#     model = Tools
+#     fields =
+#     success_url = reverse_lazy('login')
+
+class WorkersAdd(LoginRequiredMixin, CreateView):
+    login_url = '/login/'
+    model = Workers
+    fields = ['name', 'surname', 'phone', 'company']
+    template_name = 'workers_add.html'
+    success_url = reverse_lazy('login')

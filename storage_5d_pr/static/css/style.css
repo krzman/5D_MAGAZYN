@@ -96,3 +96,17 @@ a:hover {
 .logout {
 
 }
+
+.add {
+    height: auto;
+    width: 400px;
+    text-align: center;
+    position: absolute;
+    top: 250px;
+    left: 50%;
+    margin-left: -200px;
+    border: 3px ridge #eaeaea;
+    border-radius: 8px;
+    background-color: rgba(105, 105, 105, 0.3);
+
+}

@@ -18,12 +18,16 @@
         </li>
         <li><a href="">BUDOWY</a>
             <ul>
-{#                TUTAJ DODAĆ PĘTLE Z BUDOWAMI #}
-{#                <li><a href="" class="t">LG WROCŁAW</a></li>#}
-{#                <li><a href="" class="t">SAMSUNG WRONKI</a></li>#}
+                {#                TUTAJ DODAĆ PĘTLE Z BUDOWAMI #}
+                {#                <li><a href="" class="t">LG WROCŁAW</a></li>#}
+                {#                <li><a href="" class="t">SAMSUNG WRONKI</a></li>#}
             </ul>
         </li>
-        <li><a href="">PRACOWNICY</a></li>
+        <li><a href="">PRACOWNICY</a>
+            <ul>
+                <li><a href="{% url 'workers_add' %}" class="t">DODAJ</a></li>
+            </ul>
+        </li>
         <li><a href="">HISTORIA</a></li>
         <li><a href="{% url 'logout' %}">WYLOGUJ</a></li>
     </ol>

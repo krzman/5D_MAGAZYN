@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 class Workers(models.Model):
     name = models.CharField(max_length=32, verbose_name='Imię')
     surname = models.CharField(max_length=32, verbose_name='Nazwisko')
-    phone = models.IntegerField(verbose_name='Nr telefonu', blank=True)
+    phone = models.IntegerField(verbose_name='Nr telefonu', blank=True, null=True)
     company = models.CharField(max_length=32, verbose_name='Firma')
 
 
