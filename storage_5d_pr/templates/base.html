@@ -11,7 +11,11 @@
     <header class="header_main">
     </header>
     <ol>
-        <li><a href="">LISTA NARZĘDZI</a></li>
+        <li><a href="">LISTA NARZĘDZI</a>
+            <ul>
+                <li><a href="" class="t">DODAJ</a></li>
+            </ul>
+        </li>
         <li><a href="">BUDOWY</a>
             <ul>
                 <li><a href="" class="t">LG WROCŁAW</a></li>
@@ -19,6 +23,7 @@
             </ul>
         </li>
         <li><a href="">PRACOWNICY</a></li>
+        <li><a href="">HISTORIA</a></li>
         <li><a href="{% url 'logout' %}">WYLOGUJ</a></li>
     </ol>
 {% else %}
