@@ -2,10 +2,10 @@
 {% load static %}
 
 {% block content %}
-    <div class="add">
+    <div class="login">
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
-            <table align="center">
+            <table align="center" class="none">
                 {% for field in form %}
                     <tr>
                         <td>{{ field.label_tag }}</td>

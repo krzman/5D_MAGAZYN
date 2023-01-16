@@ -55,4 +55,15 @@ class WorkersAdd(LoginRequiredMixin, CreateView):
     model = Workers
     fields = ['name', 'surname', 'phone', 'company']
     template_name = 'workers_add.html'
-    success_url = reverse_lazy('login')
+    success_url = reverse_lazy('workers_list')
+
+
+class WrokersList(LoginRequiredMixin, View):
+    login_url = '/login/'
+
+    def get(self, request):
+        workers = Workers.objects.all()
+        context = {
+            'workers': workers
+        }
+        return render(request, 'workers_list.html', context=context)

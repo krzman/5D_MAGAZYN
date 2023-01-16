@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="list">
+        <table class="table">
+            <thead>
+            <tr>
+                <td>Imię</td>
+                <td>Nazwisko</td>
+                <td>Nr telenofu</td>
+                <td>Firma</td>
+            </tr>
+            </thead>
+            {% for worker in workers %}
+                <tr {% if forloop.counter|divisibleby:'2' %} class="background" {% endif %}>
+                    <td>{{ worker.name }}</td>
+                    <td>{{ worker.surname }}</td>
+                    <td>
+                        {% if worker.phone == None %}
+                            ---
+                        {% else %}
+                            {{ worker.phone }}</td>
+                        {% endif %}
+                    <td>{{ worker.company }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}
