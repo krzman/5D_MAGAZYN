@@ -18,8 +18,8 @@
         </li>
         <li><a href="">BUDOWY</a>
             <ul>
-                {% for site in construction %}
-                    <li><a href="" class="t">{{ site.name }} {{ site.city }}</a></li>
+                {% for site in constructions %}
+                    <li><a href="{% url 'construction' site.id %}" class="t">{{ site.name }} {{ site.city }}</a></li>
                 {% endfor %}
             </ul>
         </li>
@@ -28,7 +28,7 @@
                 <li><a href="{% url 'workers_add' %}" class="t">DODAJ</a></li>
             </ul>
         </li>
-        <li><a href="">HISTORIA</a></li>
+        <li><a href="{% url 'history' %}">HISTORIA</a></li>
         <li><a href="{% url 'logout' %}">WYLOGUJ</a></li>
     </ol>
 {% else %}

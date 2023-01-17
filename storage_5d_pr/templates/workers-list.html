@@ -11,6 +11,7 @@
                 <td>Nazwisko</td>
                 <td>Nr telenofu</td>
                 <td>Firma</td>
+                <td>Edytuj</td>
             </tr>
             </thead>
             {% for worker in workers %}
@@ -25,6 +26,10 @@
                             {{ worker.phone }}</td>
                         {% endif %}
                     <td>{{ worker.company }}</td>
+                    <td>
+                        <button type="button"><a href="{% url 'workers_update' worker.id %}" class="t">KLIK</a>
+                        </button>
+                    </td>
                 </tr>
             {% endfor %}
         </table>

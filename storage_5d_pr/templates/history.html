@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="list_tool">
+        <table class="table">
+            <thead>
+            <tr>
+                <td>lp</td>
+                <td>Data</td>
+                <td>Użytkownik</td>
+                <td>Nr ewidencyjny</td>
+                <td>Typ</td>
+                <td>Marka</td>
+                <td>Pracownik</td>
+                <td>Obiekt</td>
+            </tr>
+            </thead>
+            {% for data in history %}
+                <tr {% if forloop.counter|divisibleby:'2' %} class="background" {% endif %}>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ data.creation_date|date}}</td>
+                    <td>{{ data.user }}</td>
+                    <td>{{ data.tool_nr }}</td>
+                    <td>{{ data.tool_type }}</td>
+                    <td>{{ data.tool_producer }}</td>
+                    <td>{% if data.workers %}{{ data.workers }}{% endif %}</td>
+                    <td>{% if data.construction %}{{ data.construction }} {% endif %}</td>
+
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}

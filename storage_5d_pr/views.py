@@ -3,15 +3,27 @@ import http.client
 
 from django.shortcuts import render, redirect
 from django.views import View
-from django.views.generic import CreateView
+from django.views.generic import CreateView, UpdateView
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib import messages
 from django.urls import reverse_lazy
 
 # Import project module
 from storage_5d_pr.forms import *
 from storage_5d_pr.models import *
+
+
+# Helper function
+def history_add(login_user, tool_nr, tool_type, tool_producer, workers, construction):
+    data = {
+        'user': login_user,
+        'tool_nr': tool_nr,
+        'tool_type': tool_type,
+        'tool_producer': tool_producer,
+        'workers': workers,
+        'construction': construction,
+    }
+    History.objects.create(**data)
 
 
 # Create your views here.
@@ -49,6 +61,9 @@ class Logout(View):
         return redirect('login')
 
 
+# ---------------------------------------------------------------------------
+#           CREATE
+
 # Page add workers
 class WorkersAdd(LoginRequiredMixin, CreateView):
     login_url = 'login'
@@ -57,6 +72,17 @@ class WorkersAdd(LoginRequiredMixin, CreateView):
     template_name = 'workers-add.html'
     success_url = reverse_lazy('workers_list')
 
+
+# Page add tool
+class ToolAdd(LoginRequiredMixin, CreateView):
+    login_url = 'login'
+    form_class = FormToolsAdd
+    template_name = 'tools-add.html'
+    success_url = reverse_lazy('tools_list')
+
+
+# --------------------------------------------------------------------------------
+#           LIST
 
 # Page list all workers
 class WrokersList(LoginRequiredMixin, View):
@@ -70,15 +96,7 @@ class WrokersList(LoginRequiredMixin, View):
         return render(request, 'workers-list.html', context=context)
 
 
-# Page add tool
-class ToolAdd(LoginRequiredMixin, CreateView):
-    login_url = 'login'
-    form_class = FormWorkersAdd
-    template_name = 'tools-add.html'
-    success_url = reverse_lazy('tools_list')
-
-
-# PAge list all tools
+# Page list all tools
 class ToolList(LoginRequiredMixin, View):
     login_url = 'login'
 
@@ -88,3 +106,55 @@ class ToolList(LoginRequiredMixin, View):
             'tools': tools
         }
         return render(request, 'tools-list.html', context=context)
+
+
+# Page single construtcion
+class ConstructionView(LoginRequiredMixin, View):
+    login_url = 'login'
+
+    def get(self, request, construction_id):
+        construction = Construction.objects.get(id=construction_id)
+        tools = Tools.objects.all().filter(construction_id=construction_id)
+        context = {
+            'construction': construction,
+            'tools': tools
+        }
+        return render(request, 'construction.html', context=context)
+
+
+# --------------------------------------------------------------------------------------
+#           UPDATE
+
+class WorkersUpdate(LoginRequiredMixin, UpdateView):
+    login_url = 'login'
+    model = Workers
+    fields = '__all__'
+    template_name = 'workers-edit.html'
+    success_url = reverse_lazy('workers_list')
+
+
+class ToolsUpdate(LoginRequiredMixin, UpdateView):
+    login_url = 'login'
+    model = Tools
+    fields = '__all__'
+    template_name = 'tools-edit.html'
+    success_url = reverse_lazy('tools_list')
+
+    def form_valid(self, form):
+        user = self.request.user
+        object = form.save(commit=False)
+        history_add(user, object.nr, object.type, object.producer, object.workers, object.construction)
+        return super().form_valid(form)
+
+
+# -------------------------------------------------------------------------------------
+#           HISTORY
+class HistoryView(LoginRequiredMixin, View):
+    login_url = 'login'
+
+    def get(self, request):
+        history = History.objects.all()
+        context = {
+            'history': history
+        }
+        return render(request, 'history.html', context=context)

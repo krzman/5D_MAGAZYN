@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, re_path
 from storage_5d_pr.views import *
 
 urlpatterns = [
@@ -25,4 +25,8 @@ urlpatterns = [
     path('workers_list/', WrokersList.as_view(), name='workers_list'),
     path('tools_add/', ToolAdd.as_view(), name='tools_add'),
     path('tools_list/', ToolList.as_view(), name='tools_list'),
+    re_path(r'^construction/(?P<construction_id>\d+)/$', ConstructionView.as_view(), name='construction'),
+    re_path(r'^workers_edit/(?P<pk>\d+)/$', WorkersUpdate.as_view(), name='workers_update'),
+    re_path(r'^tools-edit/(?P<pk>\d+)/$', ToolsUpdate.as_view(), name='tools_update'),
+    path('history/', HistoryView.as_view(), name='history'),
 ]

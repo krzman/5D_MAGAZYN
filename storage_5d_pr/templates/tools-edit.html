@@ -3,7 +3,7 @@
 
 {% block content %}
     <div class="login">
-        <p><b>DODAWANIE NOWGO NARZĘDZIA</b></p>
+        <p><b>EDYCJA NARZĘDZI</b></p>
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <table align="center" class="none">
@@ -15,8 +15,7 @@
                 {% endfor %}
             </table>
 
-            <input type="submit" value="Dodaj">
+            <input type="submit" value="Zatwierdź">
         </form>
-        {{ mess }}
     </div>
 {% endblock %}

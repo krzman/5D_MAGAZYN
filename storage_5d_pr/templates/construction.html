@@ -2,19 +2,20 @@
 {% load static %}
 
 {% block content %}
+    <div class="name">
+        {{ construction.name }} {{ construction.city }}
+    </div>
     <div class="list_tool">
+
         <table class="table">
             <thead>
             <tr>
                 <td>lp</td>
-                <td>Nr ew.</td>
+                <td>Nr ew</td>
                 <td>Typ</td>
                 <td>Marka</td>
-                <td>Pojemność</td>
-                <td>Wielkość</td>
-                <td>Data pobrania</td>
                 <td>Pracownik</td>
-                <td>Obiekt</td>
+                <td>Data</td>
                 <td>Edycja</td>
             </tr>
             </thead>
@@ -24,14 +25,9 @@
                     <td>{{ tool.nr }}</td>
                     <td>{{ tool.type }}</td>
                     <td>{{ tool.producer }}</td>
-                    <td>{{ tool.capacity }}</td>
-                    <td>{{ tool.size }}</td>
+                    <td>{{ tool.workers }}</td>
                     <td>{{ tool.date }}</td>
-                    <td>{{ tool.workers.surname }} {{ tool.workers.name }}</td>
-                    <td>{{ tool.construction.name }} {{ tool.construction.city }}</td>
-                    <td>
-                        <button type="button"><a href="{% url 'tools_update' tool.id %}" class="t">KLIK</a></button>
-                    </td>
+                    <td><button type="button"><a href="{% url 'tools_update' tool.id %}" class="t">KLIK</a></button></td>
                 </tr>
             {% endfor %}
         </table>

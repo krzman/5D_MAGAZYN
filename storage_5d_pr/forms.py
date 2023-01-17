@@ -8,7 +8,7 @@ class FormLogin(forms.Form):
     password = forms.CharField(max_length=64, label='Podaj hasło', widget=forms.PasswordInput)
 
 
-class FormWorkersAdd(forms.ModelForm):
+class FormToolsAdd(forms.ModelForm):
     class Meta:
         model = Tools
         fields = '__all__'
