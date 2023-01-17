@@ -22,5 +22,7 @@ urlpatterns = [
     path('', Login.as_view(), name='login'),
     path('logout/', Logout.as_view(), name='logout'),
     path('workers_add/', WorkersAdd.as_view(), name='workers_add'),
-    path('workers_list/', WrokersList.as_view(), name='workers_list')
+    path('workers_list/', WrokersList.as_view(), name='workers_list'),
+    path('tools_add/', ToolAdd.as_view(), name='tools_add'),
+    path('tools_list/', ToolList.as_view(), name='tools_list'),
 ]

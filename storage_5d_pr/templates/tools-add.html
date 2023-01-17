@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="login">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <table align="center" class="none">
+                {% for field in form %}
+                    <tr>
+                        <td>{{ field.label_tag }}</td>
+                        <td>{{ field }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+
+            <input type="submit" value="Dodaj">
+        </form>
+        {{ mess }}
+    </div>
+{% endblock %}

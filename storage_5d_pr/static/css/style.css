@@ -103,14 +103,23 @@ a:hover {
 
 .list {
     height: auto;
-    width: 30%;
+    width: 40%;
     position: absolute;
     top: 250px;
-    left: 35%;
+    left: 30%;
     border: 3px ridge #eaeaea;
     border-radius: 8px;
 }
 
+.list_tool{
+    height: auto;
+    width: 60%;
+    position: absolute;
+    top: 250px;
+    left: 20%;
+    border: 3px ridge #eaeaea;
+    border-radius: 8px;
+}
 .table {
     width: 100%;
     text-align: center;

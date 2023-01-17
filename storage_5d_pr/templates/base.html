@@ -11,16 +11,16 @@
     <header class="header_main">
     </header>
     <ol>
-        <li><a href="">LISTA NARZĘDZI</a>
+        <li><a href="{% url 'tools_list' %}">LISTA NARZĘDZI</a>
             <ul>
-                <li><a href="" class="t">DODAJ</a></li>
+                <li><a href="{% url 'tools_add' %}" class="t">DODAJ</a></li>
             </ul>
         </li>
         <li><a href="">BUDOWY</a>
             <ul>
-                {#                TUTAJ DODAĆ PĘTLE Z BUDOWAMI #}
-                {#                <li><a href="" class="t">LG WROCŁAW</a></li>#}
-                {#                <li><a href="" class="t">SAMSUNG WRONKI</a></li>#}
+                {% for site in construction %}
+                    <li><a href="" class="t">{{ site.name }} {{ site.city }}</a></li>
+                {% endfor %}
             </ul>
         </li>
         <li><a href="{% url 'workers_list' %}">PRACOWNICY</a>
