@@ -14,7 +14,8 @@ from storage_5d_pr.models import *
 
 
 # Helper function
-def history_add(login_user, tool_nr, tool_type, tool_producer, workers, construction):
+def history_add(login_user=None, tool_nr=None, tool_type=None, tool_producer=None, workers=None, construction=None,
+                comment=None):
     data = {
         'user': login_user,
         'tool_nr': tool_nr,
@@ -22,6 +23,7 @@ def history_add(login_user, tool_nr, tool_type, tool_producer, workers, construc
         'tool_producer': tool_producer,
         'workers': workers,
         'construction': construction,
+        'comment': comment,
     }
     History.objects.create(**data)
 
@@ -132,6 +134,17 @@ class WorkersUpdate(LoginRequiredMixin, UpdateView):
     template_name = 'workers-edit.html'
     success_url = reverse_lazy('workers_list')
 
+    # Add taks to history
+    def form_valid(self, form):
+        user = self.request.user
+        object = form.save(commit=False)
+        if object.active:
+            comment = 'Aktywny'
+        else:
+            comment = 'Nieaktywny'
+        history_add(user, workers=object, comment=comment)
+        return super().form_valid(form)
+
 
 class ToolsUpdate(LoginRequiredMixin, UpdateView):
     login_url = 'login'
@@ -140,10 +153,12 @@ class ToolsUpdate(LoginRequiredMixin, UpdateView):
     template_name = 'tools-edit.html'
     success_url = reverse_lazy('tools_list')
 
+    # Add taks to history
     def form_valid(self, form):
+        comment = 'Edycja'
         user = self.request.user
         object = form.save(commit=False)
-        history_add(user, object.nr, object.type, object.producer, object.workers, object.construction)
+        history_add(user, object.nr, object.type, object.producer, object.workers, object.construction, comment)
         return super().form_valid(form)
 
 
@@ -156,5 +171,18 @@ class HistoryView(LoginRequiredMixin, View):
         history = History.objects.all()
         context = {
             'history': history
+        }
+        return render(request, 'history.html', context=context)
+
+
+class HistorySingle(LoginRequiredMixin, View):
+    login_url = 'login'
+
+    def get(self, request, tool_nr):
+        history = History.objects.all().filter(tool_nr=tool_nr)
+        single = True
+        context = {
+            'history': history,
+            'single': single
         }
         return render(request, 'history.html', context=context)

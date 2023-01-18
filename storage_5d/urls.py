@@ -29,4 +29,5 @@ urlpatterns = [
     re_path(r'^workers_edit/(?P<pk>\d+)/$', WorkersUpdate.as_view(), name='workers_update'),
     re_path(r'^tools-edit/(?P<pk>\d+)/$', ToolsUpdate.as_view(), name='tools_update'),
     path('history/', HistoryView.as_view(), name='history'),
+    re_path(r'^history/(?P<tool_nr>\d.\d)/$', HistorySingle.as_view(), name='history_single'),
 ]

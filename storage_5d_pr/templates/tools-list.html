@@ -16,6 +16,7 @@
                 <td>Pracownik</td>
                 <td>Obiekt</td>
                 <td>Edycja</td>
+                <td>Historia</td>
             </tr>
             </thead>
             {% for tool in tools %}
@@ -31,6 +32,9 @@
                     <td>{{ tool.construction.name }} {{ tool.construction.city }}</td>
                     <td>
                         <button type="button"><a href="{% url 'tools_update' tool.id %}" class="t">KLIK</a></button>
+                    </td>
+                    <td>
+                        <button type="button"><a href="{% url 'history_single' tool.nr %}" class="t">KLIK</a></button>
                     </td>
                 </tr>
             {% endfor %}

@@ -7,25 +7,35 @@
             <thead>
             <tr>
                 <td>lp</td>
-                <td>Data</td>
+                <td>Data wpisu</td>
                 <td>Użytkownik</td>
                 <td>Nr ewidencyjny</td>
                 <td>Typ</td>
                 <td>Marka</td>
+                <td>Data</td>
                 <td>Pracownik</td>
                 <td>Obiekt</td>
+                {% if single %}
+                {% else %}
+                    <td>Czynność</Td>
+                {% endif %}
             </tr>
             </thead>
             {% for data in history %}
                 <tr {% if forloop.counter|divisibleby:'2' %} class="background" {% endif %}>
                     <td>{{ forloop.counter }}</td>
-                    <td>{{ data.creation_date|date}}</td>
+                    <td>{{ data.creation_date|date }}</td>
                     <td>{{ data.user }}</td>
-                    <td>{{ data.tool_nr }}</td>
-                    <td>{{ data.tool_type }}</td>
-                    <td>{{ data.tool_producer }}</td>
+                    <td>{% if data.tool_nr %}{{ data.tool_nr }}{% endif %}</td>
+                    <td>{% if data.tool_type %}{{ data.tool_type }}{% endif %}</td>
+                    <td>{% if data.tool_producer %}{{ data.tool_producer }}{% endif %}</td>
+                    <td>{% if data.tool_date %}{{ data.tool_date }}{% endif %}</td>
                     <td>{% if data.workers %}{{ data.workers }}{% endif %}</td>
                     <td>{% if data.construction %}{{ data.construction }} {% endif %}</td>
+                    {% if single %}
+                    {% else %}
+                        <td>{{ data.comment }}</td>
+                    {% endif %}
 
                 </tr>
             {% endfor %}
