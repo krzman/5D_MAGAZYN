@@ -74,6 +74,14 @@ class WorkersAdd(LoginRequiredMixin, CreateView):
     template_name = 'workers-add.html'
     success_url = reverse_lazy('workers_list')
 
+    # Add taks to history
+    def form_valid(self, form):
+        comment = 'Dodano'
+        user = self.request.user
+        object = form.save(commit=False)
+        history_add(user, workers=object, comment=comment)
+        return super().form_valid(form)
+
 
 # Page add tool
 class ToolAdd(LoginRequiredMixin, CreateView):
@@ -81,6 +89,14 @@ class ToolAdd(LoginRequiredMixin, CreateView):
     form_class = FormToolsAdd
     template_name = 'tools-add.html'
     success_url = reverse_lazy('tools_list')
+
+    # Add taks to history
+    def form_valid(self, form):
+        comment = 'Dodano'
+        user = self.request.user
+        object = form.save(commit=False)
+        history_add(user, object.nr, object.type, object.producer, object.workers, object.construction, comment)
+        return super().form_valid(form)
 
 
 # --------------------------------------------------------------------------------
@@ -110,7 +126,7 @@ class ToolList(LoginRequiredMixin, View):
         return render(request, 'tools-list.html', context=context)
 
 
-# Page single construtcion
+# Page single construtcion with tools
 class ConstructionView(LoginRequiredMixin, View):
     login_url = 'login'
 

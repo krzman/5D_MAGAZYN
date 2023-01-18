@@ -17,6 +17,7 @@
                 <td>Pracownik</td>
                 <td>Data</td>
                 <td>Edycja</td>
+                <td>Historia</td>
             </tr>
             </thead>
             {% for tool in tools %}
@@ -28,6 +29,7 @@
                     <td>{{ tool.workers }}</td>
                     <td>{{ tool.date }}</td>
                     <td><button type="button"><a href="{% url 'tools_update' tool.id %}" class="t">KLIK</a></button></td>
+                    <td><button type="button"><a href="{% url 'history_single' tool.nr %}" class="t">KLIK</a></button></td>
                 </tr>
             {% endfor %}
         </table>
