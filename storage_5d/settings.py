@@ -9,12 +9,11 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-
+import sys
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
@@ -27,10 +26,12 @@ except FileNotFoundError as error:
     exit(0)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+if 'runserver' in sys.argv:
+    DEBUG = True
+else:
+    DEBUG = False
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['krzman.atthost24.pl', '127.0.0.1']
 
 # Application definition
 
@@ -75,16 +76,19 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'storage_5d.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 try:
-    from storage_5d.local_settings import DATABASES
+    from storage_5d.local_settings import DATABASES_PROD, DATABASES_LOCAL
+
+    if DEBUG:
+        DATABASES = DATABASES_LOCAL
+    else:
+        DATABASES = DATABASES_PROD
 except FileNotFoundError as error:
     print(error)
     exit(0)
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -104,7 +108,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
@@ -115,7 +118,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
