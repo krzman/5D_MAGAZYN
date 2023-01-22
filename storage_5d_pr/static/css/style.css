@@ -129,6 +129,9 @@ a:hover {
 .background {
     background-color: rgba(105, 105, 105, 0.3)
 }
+.on_site {
+    background-color: orangered;
+}
 
 .name {
     height: auto;
@@ -142,6 +145,7 @@ a:hover {
 .not_active {
     text-decoration: line-through;
 }
+
 .none {
 
 }
