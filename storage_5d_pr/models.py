@@ -50,7 +50,7 @@ class Tools(models.Model):
 class History(models.Model):
     creation_date = models.DateTimeField(auto_now_add=True, verbose_name='Data_wpisu')
     user = models.CharField(max_length=64, verbose_name='Użytkownik')
-    tool_nr = models.FloatField(max_length=32, verbose_name='Nr ew', default=0.0, null=True)
+    tool_nr = models.CharField(max_length=32, verbose_name='Nr ew', default=0.0, null=True)
     tool_type = models.CharField(max_length=128, verbose_name='Typ', default=0, null=True)
     tool_producer = models.CharField(max_length=64, verbose_name='Marka', default=0, null=True)
     tool_date = models.DateField(verbose_name='Data', blank=True, null=True)
