@@ -129,8 +129,13 @@ a:hover {
 .background {
     background-color: rgba(105, 105, 105, 0.3)
 }
+
 .on_site {
     background-color: orangered;
+}
+
+.on_storage {
+    background-color: yellow;
 }
 
 .name {
@@ -142,6 +147,7 @@ a:hover {
     left: 40%;
     font-size: 2em;
 }
+
 .not_active {
     text-decoration: line-through;
 }

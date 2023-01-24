@@ -119,9 +119,11 @@ class ToolList(LoginRequiredMixin, View):
     login_url = 'login'
 
     def get(self, request):
+        CONSTRUCTION_LIST = ['LG', 'Samsung', 'Mercedes']  # lista do filtrowania "koloru"
         tools = Tools.objects.all()
         context = {
-            'tools': tools
+            'tools': tools,
+            'construction': CONSTRUCTION_LIST
         }
         return render(request, 'tools-list.html', context=context)
 

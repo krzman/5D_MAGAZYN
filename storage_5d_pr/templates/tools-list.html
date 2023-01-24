@@ -20,9 +20,10 @@
             </tr>
             </thead>
             {% for tool in tools %}
-                <tr {% if  tool.construction.name != 'Magazyn' %} class="on_site"
-                    {% elif forloop.counter|divisibleby:'2' %} class="background"
-                    {% endif %}>
+                <tr
+                        {% if tool.construction.name in construction %} class="on_site"
+                        {% elif forloop.counter|divisibleby:'2' %} class="background"
+                        {% endif %}>
                     <td>{{ forloop.counter }}</td>
                     <td>{{ tool.nr }}</td>
                     <td>{{ tool.type }}</td>
