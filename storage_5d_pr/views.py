@@ -167,7 +167,7 @@ class WorkersUpdate(LoginRequiredMixin, UpdateView):
 class ToolsUpdate(LoginRequiredMixin, UpdateView):
     login_url = 'login'
     model = Tools
-    fields = '__all__'
+    fields = ['nr', 'type', 'producer', 'date', 'workers', 'construction']
     template_name = 'tools-edit.html'
     success_url = reverse_lazy('tools_list')
 

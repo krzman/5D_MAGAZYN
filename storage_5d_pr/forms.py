@@ -11,7 +11,7 @@ class FormLogin(forms.Form):
 class FormToolsAdd(forms.ModelForm):
     class Meta:
         model = Tools
-        fields = '__all__'
+        fields = ['nr', 'type', 'producer', 'date', 'workers', 'construction']
         widgets = {
             'nr': forms.NumberInput(attrs={'step': '0.001'}),
             'date': forms.SelectDateWidget(),
