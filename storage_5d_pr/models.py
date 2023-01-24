@@ -33,7 +33,7 @@ class Construction(models.Model):
 
 
 class Tools(models.Model):
-    nr = models.FloatField(max_length=16, verbose_name='Nr ewidencyjny', unique=True)
+    nr = models.CharField(max_length=8, verbose_name='Nr ewidencyjny', unique=True)
     type = models.CharField(max_length=128, verbose_name='Typ')
     producer = models.CharField(max_length=64, verbose_name='Marka')
     capacity = models.CharField(max_length=32, verbose_name='Pojemność', blank=True)

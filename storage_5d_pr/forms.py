@@ -13,6 +13,6 @@ class FormToolsAdd(forms.ModelForm):
         model = Tools
         fields = '__all__'
         widgets = {
-            'nr': forms.NumberInput(attrs={'step': '0.01'}),
+            'nr': forms.NumberInput(attrs={'step': '0.001'}),
             'date': forms.SelectDateWidget(),
         }
