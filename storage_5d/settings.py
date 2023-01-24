@@ -31,7 +31,7 @@ if 'runserver' in sys.argv:
 else:
     DEBUG = False
 
-ALLOWED_HOSTS = ['krzman.atthost24.pl', '127.0.0.1', 'storage.mi-dev.pl']
+ALLOWED_HOSTS = ['krzman.atthost24.pl', '127.0.0.1', 'storage5d.mi-dev.pl']
 
 # Application definition
 
