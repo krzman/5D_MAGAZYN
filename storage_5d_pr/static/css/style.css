@@ -113,10 +113,10 @@ a:hover {
 
 .list_tool {
     height: auto;
-    width: 60%;
+    width: 80%;
     position: absolute;
     top: 250px;
-    left: 20%;
+    left: 10%;
     border: 3px ridge #eaeaea;
     border-radius: 8px;
 }
