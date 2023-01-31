@@ -6,15 +6,15 @@
         <table class="table">
             <thead>
             <tr>
-                <td>lp</td>
-                <td>Nr ew.</td>
-                <td>Typ</td>
-                <td>Marka</td>
-                <td>Data pobrania</td>
-                <td>Pracownik</td>
-                <td>Obiekt</td>
-                <td>Edycja</td>
-                <td>Historia</td>
+                <td>LP</td>
+                <td>NR EW.</td>
+                <td>TYP</td>
+                <td>MARKA</td>
+                <td>DATA POBRANIA</td>
+                <td>PRACOWNIK</td>
+                <td>OBIEKT</td>
+                <td>WYDANIE / ZWROT</td>
+                <td>HISTORIA</td>
             </tr>
             </thead>
             {% for tool in tools %}
@@ -23,17 +23,17 @@
                         {% elif forloop.counter|divisibleby:'2' %} class="background"
                         {% endif %}>
                     <td>{{ forloop.counter }}</td>
-                    <td>{{ tool.nr}}</td>
+                    <td>{{ tool.nr }}</td>
                     <td>{{ tool.type }}</td>
                     <td>{{ tool.producer }}</td>
-                    <td>{{ tool.date }}</td>
+                    <td>{% if 'Magazyn' not in tool.construction.name%}{{ tool.date }}{% endif %}</td>
                     <td>{{ tool.workers.surname }} {{ tool.workers.name }}</td>
                     <td>{{ tool.construction.name }} {{ tool.construction.city }}</td>
                     <td>
-                        <button type="button"><a href="{% url 'tools_update' tool.id %}" class="t">KLIK</a></button>
+                        <button type="button"><a href="{% url 'tools_update' tool.id %}" class="t">EDYCJA</a></button>
                     </td>
                     <td>
-                        <button type="button"><a href="{% url 'history_single' tool.nr %}" class="t">KLIK</a></button>
+                        <button type="button"><a href="{% url 'history_single' tool.nr %}" class="t">POKAŻ</a></button>
                     </td>
                 </tr>
             {% endfor %}

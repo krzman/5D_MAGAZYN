@@ -10,14 +10,14 @@
         <table class="table">
             <thead>
             <tr>
-                <td>lp</td>
-                <td>Nr ew</td>
-                <td>Typ</td>
-                <td>Marka</td>
-                <td>Pracownik</td>
-                <td>Data</td>
-                <td>Edycja</td>
-                <td>Historia</td>
+                <td>LP</td>
+                <td>NR EW.</td>
+                <td>TYP</td>
+                <td>MARKA</td>
+                <td>PRACOWNIK</td>
+                <td>DATA</td>
+                <td>WYDANIE / ZWROT</td>
+                <td>HISTORIA</td>
             </tr>
             </thead>
             {% for tool in tools %}
@@ -29,10 +29,10 @@
                     <td>{% if  tool.workers %} {{ tool.workers }} {% endif %}</td>
                     <td>{{ tool.date }}</td>
                     <td>
-                        <button type="button"><a href="{% url 'tools_update' tool.id %}" class="t">KLIK</a></button>
+                        <button type="button"><a href="{% url 'tools_update' tool.id %}" class="t">EDYCJA</a></button>
                     </td>
                     <td>
-                        <button type="button"><a href="{% url 'history_single' tool.nr %}" class="t">KLIK</a></button>
+                        <button type="button"><a href="{% url 'history_single' tool.nr %}" class="t">POKAŻ</a></button>
                     </td>
                 </tr>
             {% endfor %}

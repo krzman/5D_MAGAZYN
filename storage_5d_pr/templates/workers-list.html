@@ -6,12 +6,12 @@
         <table class="table">
             <thead>
             <tr>
-                <td>lp</td>
-                <td>Imię</td>
-                <td>Nazwisko</td>
-                <td>Nr telenofu</td>
-                <td>Firma</td>
-                <td>Edytuj</td>
+                <td>LP</td>
+                <td>IMIĘ</td>
+                <td>NAZWISKO</td>
+                <td>NR TELEFONU</td>
+                <td>FIRMA</td>
+                <td>EDYTUJ</td>
             </tr>
             </thead>
             {% for worker in workers %}
@@ -27,7 +27,7 @@
                         {% endif %}
                     <td>{{ worker.company }}</td>
                     <td>
-                        <button type="button"><a href="{% url 'workers_update' worker.id %}" class="t">KLIK</a>
+                        <button type="button"><a href="{% url 'workers_update' worker.id %}" class="t">EDYCJA</a>
                         </button>
                     </td>
                 </tr>

@@ -14,13 +14,14 @@ from storage_5d_pr.models import *
 
 
 # Helper function
-def history_add(login_user=None, tool_nr=None, tool_type=None, tool_producer=None, workers=None, construction=None,
+def history_add(login_user=None, tool_nr=None, tool_type=None, tool_producer=None, tool_date=None, workers=None, construction=None,
                 comment=None):
     data = {
         'user': login_user,
         'tool_nr': tool_nr,
         'tool_type': tool_type,
         'tool_producer': tool_producer,
+        'tool_date': tool_date,
         'workers': workers,
         'construction': construction,
         'comment': comment,
@@ -95,7 +96,7 @@ class ToolAdd(LoginRequiredMixin, CreateView):
         comment = 'Dodano'
         user = self.request.user
         object = form.save(commit=False)
-        history_add(user, object.nr, object.type, object.producer, object.workers, object.construction, comment)
+        history_add(user, object.nr, object.type, object.producer, object.date, object.workers, object.construction, comment)
         return super().form_valid(form)
 
 
@@ -176,7 +177,7 @@ class ToolsUpdate(LoginRequiredMixin, UpdateView):
         comment = 'Edycja'
         user = self.request.user
         object = form.save(commit=False)
-        history_add(user, object.nr, object.type, object.producer, object.workers, object.construction, comment)
+        history_add(user, object.nr, object.type, object.producer, object.date, object.workers, object.construction, comment)
         return super().form_valid(form)
 
 
