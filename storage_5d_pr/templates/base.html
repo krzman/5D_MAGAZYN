@@ -2,11 +2,14 @@
 {% load static %}
 <html lang="en">
 <head>
-    <link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet">
+    {#    <link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet">#}
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
     <title>5D Magazyn</title>
 </head>
 <body>
+<script src="{% static 'js/bootstrap.js' %}"></script>
 {% if user.is_authenticated %}
     <header class="header_main">
     </header>
@@ -45,8 +48,9 @@
         <li><a href="{% url 'logout' %}">WYLOGUJ</a></li>
     </ol>
 {% else %}
-    <header class="header_login">
-    </header>
+    <div class="container my-4 text-center">
+    <img src="{% static 'img/logo.jpg' %}">
+    </div>
 {% endif %}
 {% block content %}
     Coś nie działa

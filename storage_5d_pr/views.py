@@ -14,7 +14,8 @@ from storage_5d_pr.models import *
 
 
 # Helper function
-def history_add(login_user=None, tool_nr=None, tool_type=None, tool_producer=None, tool_date=None, workers=None, construction=None,
+def history_add(login_user=None, tool_nr=None, tool_type=None, tool_producer=None, tool_date=None, workers=None,
+                construction=None,
                 comment=None):
     data = {
         'user': login_user,
@@ -44,7 +45,7 @@ class Login(View):
     def post(self, request):
         form = FormLogin(request.POST)
         if form.is_valid():
-            username = form.cleaned_data['username']
+            username = form.cleaned_data['email']
             password = form.cleaned_data['password']
             user = authenticate(request, username=username, password=password)
             if user is not None:
@@ -96,7 +97,8 @@ class ToolAdd(LoginRequiredMixin, CreateView):
         comment = 'Dodano'
         user = self.request.user
         object = form.save(commit=False)
-        history_add(user, object.nr, object.type, object.producer, object.date, object.workers, object.construction, comment)
+        history_add(user, object.nr, object.type, object.producer, object.date, object.workers, object.construction,
+                    comment)
         return super().form_valid(form)
 
 
@@ -177,7 +179,8 @@ class ToolsUpdate(LoginRequiredMixin, UpdateView):
         comment = 'Edycja'
         user = self.request.user
         object = form.save(commit=False)
-        history_add(user, object.nr, object.type, object.producer, object.date, object.workers, object.construction, comment)
+        history_add(user, object.nr, object.type, object.producer, object.date, object.workers, object.construction,
+                    comment)
         return super().form_valid(form)
 
 

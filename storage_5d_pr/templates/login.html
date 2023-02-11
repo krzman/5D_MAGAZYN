@@ -5,12 +5,23 @@
     {% if user.is_authenticated %}
         {{ mess }}
     {% else %}
-        <div class="login">
+
+        <div class="container my-5 text-center border border-3 rounded-2 w-25 bg-light">
             <form method="post">
                 {% csrf_token %}
-                <p><b>LOGOWANIE</b></p>
-                {{ form.as_p }}
-                <input type="submit" value="Zaloguj">
+                {#                <p><b>LOGOWANIE</b></p>#}
+                {#                {{ form.as_p }}#}
+                {#                <input type="submit" value="Zaloguj">#}
+                <h4 class="my-3">LOGOWANIE</h4>
+                <div class="my-3">
+                    <input type="email" placeholder="Podaj maila" name="email">
+                </div>
+                <div class="my-3">
+                    <input type="password" placeholder="Podaj hasło" name="password">
+                </div>
+                <div class="my-3">
+                    <input type="submit" class="btn btn-danger" value="ZALOGUJ">
+                </div>
             </form>
             <br>
             {{ mess }}

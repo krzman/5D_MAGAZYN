@@ -4,7 +4,7 @@ from storage_5d_pr.models import *
 
 
 class FormLogin(forms.Form):
-    username = forms.EmailField(max_length=64, label='Podaj maila')
+    email = forms.EmailField(max_length=64, label='Podaj maila')
     password = forms.CharField(max_length=64, label='Podaj hasło', widget=forms.PasswordInput)
 
 
