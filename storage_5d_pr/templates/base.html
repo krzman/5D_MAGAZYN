@@ -9,47 +9,103 @@
     <title>5D Magazyn</title>
 </head>
 <body>
-<script src="{% static 'js/bootstrap.js' %}"></script>
+<script src="{% static 'js/bootstrap.bundle.js' %}"></script>
 {% if user.is_authenticated %}
-    <header class="header_main">
-    </header>
-    <ol>
-        <li><a href="{% url 'tools_list' %}">LISTA NARZĘDZI</a>
-            <ul>
-                <li><a href="{% url 'tools_add' %}" class="t">DODAJ</a></li>
+    {#    ----------------------------------------#}
+    <nav class="navbar-nav">
+        <div class="container-fluid mt-3">
+            <img src="{% static 'img/logo.jpg' %}" width="150">
+            <ul class="nav justify-content-end">
+                {# Narzędzia #}
+                <li class="nav-item">
+                    <a class="nav-link dropdown-toggle link-dark" href="#" data-bs-toggle="dropdown">NARZĘDZIA</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item link-dark" href="{% url 'tools_list' %}">LISTA</a></li>
+                        <li><a class="dropdown-item link-dark" href="{% url 'tools_add' %}">DODAJ</a></li>
+                    </ul>
+                </li>
+                {# Budowy #}
+                <li class="nav-item">
+                    <a class="nav-link dropdown-toggle link-dark" href="#" data-bs-toggle="dropdown">BUDOWY</a>
+                    <ul class="dropdown-menu">
+                        {% for site in constructions %}
+                            {% if 'Budowa' in site.name %}
+                                <li><a class="dropdown-item link-dark"
+                                       href="{% url 'construction' site.id %}"> {{ site.name }} {{ site.city }}</a>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </li>
+                {# Magazyny #}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle link-dark" href="#" data-bs-toggle="dropdown">MAGAZYNY</a>
+                    <ul class="dropdown-menu">
+                        {% for site in constructions %}
+                            {% if 'Budowa' not in site.name %}
+                                <li><a class="dropdown-item link-dark"
+                                       href="{% url 'construction' site.id %}"> {{ site.name }} {{ site.city }}</a>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </li>
+                {# Pracownicy #}
+                <li class="nav-item">
+                    <a class="nav-link dropdown-toggle link-dark" href="#" data-bs-toggle="dropdown">PRACOWNICY</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item link-dark" href="{% url 'workers_list' %}">LISTA</a></li>
+                        <li><a class="dropdown-item link-dark" href="{% url 'workers_add' %}">DODAJ</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link link-dark" href="{% url 'history' %}">HISTORIA</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link link-dark" href="{% url 'logout' %}">WYLOGUJ</a>
+                </li>
             </ul>
-        </li>
-        <li><a href="">BUDOWY</a>
-            <ul>
-                {% for site in constructions %}
-                    {% if 'Budowa' in site.name %}
-                        <li><a href="{% url 'construction' site.id %}" class="t">{{ site.name }} {{ site.city }}</a>
-                        </li>
-                    {% endif %}
-                {% endfor %}
-            </ul>
-        </li>
-        <li><a href="">MAGAZYNY</a>
-            <ul>
-                {% for site in constructions %}
-                    {% if 'Budowa' not in site.name %}
-                        <li><a href="{% url 'construction' site.id %}" class="t">{{ site.name }} {{ site.city }}</a>
-                        </li>
-                    {% endif %}
-                {% endfor %}
-            </ul>
-        </li>
-        <li><a href="{% url 'workers_list' %}">PRACOWNICY</a>
-            <ul>
-                <li><a href="{% url 'workers_add' %}" class="t">DODAJ</a></li>
-            </ul>
-        </li>
-        <li><a href="{% url 'history' %}">HISTORIA</a></li>
-        <li><a href="{% url 'logout' %}">WYLOGUJ</a></li>
-    </ol>
+        </div>
+    </nav>
+    <!--
+{#    <ol>#}
+{#                <li><a href="{% url 'tools_list' %}">LISTA NARZĘDZI</a>#}
+{#                    <ul>#}
+{#                        <li><a href="{% url 'tools_add' %}" class="t">DODAJ</a></li>#}
+{#                    </ul>#}
+{#                </li>#}
+{#                <li><a href="">BUDOWY</a>#}
+{#                    <ul>#}
+{#                        {% for site in constructions %}#}
+{#                            {% if 'Budowa' in site.name %}#}
+{#                                <li><a href="{% url 'construction' site.id %}" class="t">{{ site.name }} {{ site.city }}</a>#}
+{#                                </li>#}
+{#                            {% endif %}#}
+{#                        {% endfor %}#}
+{#                    </ul>#}
+{#                </li>#}
+{#                <li><a href="">MAGAZYNY</a>#}
+{#                    <ul>#}
+{#                        {% for site in constructions %}#}
+{#                            {% if 'Budowa' not in site.name %}#}
+{#                                <li><a href="{% url 'construction' site.id %}" class="t">{{ site.name }} {{ site.city }}</a>#}
+{#                                </li>#}
+{#                            {% endif %}#}
+{#                        {% endfor %}#}
+{#                    </ul>#}
+{#                </li>#}
+{#        <li><a href="{% url 'workers_list' %}">PRACOWNICY</a>#}
+{#            <ul>#}
+{#                <li><a href="{% url 'workers_add' %}" class="t">DODAJ</a></li>#}
+{#            </ul>#}
+{#        </li>#}
+{#        <li><a href="{% url 'history' %}">HISTORIA</a></li>#}
+{#        <li><a href="{% url 'logout' %}">WYLOGUJ</a></li>#}
+{#    </ol>#}
+-->
 {% else %}
     <div class="container my-4 text-center">
-    <img src="{% static 'img/logo.jpg' %}">
+        <img src="{% static 'img/logo.jpg' %}">
     </div>
 {% endif %}
 {% block content %}
