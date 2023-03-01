@@ -81,7 +81,7 @@ class WorkersAdd(LoginRequiredMixin, CreateView):
         comment = 'Dodano'
         user = self.request.user
         object = form.save(commit=False)
-        history_add(user, workers=object, comment=comment)
+        history_add(user, workers=object, comment=comment, tool_date=datetime.date.today())
         return super().form_valid(form)
 
 
@@ -163,7 +163,7 @@ class WorkersUpdate(LoginRequiredMixin, UpdateView):
             comment = 'Aktywny'
         else:
             comment = 'Nieaktywny'
-        history_add(user, workers=object, comment=comment)
+        history_add(user, workers=object, comment=comment, tool_date=datetime.date.today())
         return super().form_valid(form)
 
 

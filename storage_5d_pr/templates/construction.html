@@ -5,23 +5,22 @@
     <div class="name">
         {{ construction.name }} {{ construction.city }}
     </div>
-    <div class="list_tool">
-
+    <div class="container-fluid mt-5 w-75 overflow-scroll" style="max-height: 700px">
         <table class="table">
-            <thead>
+            <thead class="bg-dark sticky-top text-light">
             <tr>
-                <td>LP</td>
-                <td>NR EW.</td>
-                <td>TYP</td>
-                <td>MARKA</td>
-                <td>PRACOWNIK</td>
-                <td>DATA</td>
-                <td>WYDANIE / ZWROT</td>
-                <td>HISTORIA</td>
+                <th>LP</th>
+                <th>NR EW.</th>
+                <th>TYP</th>
+                <th>MARKA</th>
+                <th>PRACOWNIK</th>
+                <th>DATA</th>
+                <th>WYDANIE / ZWROT</th>
+                <th>HISTORIA</th>
             </tr>
             </thead>
             {% for tool in tools %}
-                <tr {% if forloop.counter|divisibleby:'2' %} class="background" {% endif %}>
+                <tr {% if forloop.counter|divisibleby:'2' %} class="table-light" {% endif %}>
                     <td>{{ forloop.counter }}</td>
                     <td>{{ tool.nr }}</td>
                     <td>{{ tool.type }}</td>
@@ -29,10 +28,14 @@
                     <td>{% if  tool.workers %} {{ tool.workers }} {% endif %}</td>
                     <td>{{ tool.date }}</td>
                     <td>
-                        <button type="button"><a href="{% url 'tools_update' tool.id %}" class="t">EDYCJA</a></button>
+                        <button type="button" class="btn btn-secondary">
+                            <a class="link-light text-decoration-none"
+                               href="{% url 'tools_update' tool.id %}">EDYCJA</a></button>
                     </td>
                     <td>
-                        <button type="button"><a href="{% url 'history_single' tool.nr %}" class="t">POKAŻ</a></button>
+                        <button type="button" class="btn btn-secondary">
+                            <a class="link-light text-decoration-none"
+                               href="{% url 'history_single' tool.nr %}">POKAŻ</a></button>
                     </td>
                 </tr>
             {% endfor %}

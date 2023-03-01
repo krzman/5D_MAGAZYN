@@ -2,27 +2,27 @@
 {% load static %}
 
 {% block content %}
-    <div class="list_tool">
+    <div class="container-fluid mt-5 w-75 overflow-scroll" style="max-height: 700px">
         <table class="table">
-            <thead>
+            <thead class="bg-dark sticky-top text-light">
             <tr>
-                <td>LP</td>
-                <td>DATA WPISU</td>
-                <td>UŻYTKOWNIK</td>
-                <td>NR EW.</td>
-                <td>TYP</td>
-                <td>MARKA</td>
-                <td>DATA</td>
-                <td>PRACOWNIK</td>
-                <td>OBIEKT</td>
+                <th>LP</th>
+                <th>DATA WPISU</th>
+                <th>UŻYTKOWNIK</th>
+                <th>NR EW.</th>
+                <th>TYP</th>
+                <th>MARKA</th>
+                <th>DATA</th>
+                <th>PRACOWNIK</th>
+                <th>OBIEKT</th>
                 {% if single %}
                 {% else %}
-                    <td>CZYNNOŚĆ</Td>
+                    <th>CZYNNOŚĆ</th>
                 {% endif %}
             </tr>
             </thead>
             {% for data in history %}
-                <tr {% if forloop.counter|divisibleby:'2' %} class="background" {% endif %}>
+                <tr {% if forloop.counter|divisibleby:'2' %} class="table-light" {% endif %}>
                     <td>{{ forloop.counter }}</td>
                     <td>{{ data.creation_date|date }}</td>
                     <td>{{ data.user }}</td>

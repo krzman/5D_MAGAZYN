@@ -2,11 +2,11 @@
 {% load static %}
 
 {% block content %}
-    <div class="login">
+    <div class="container mt-5 text-center border border-3 rounded-2 bg-light" style="width: 500px">
         <p><b>EDYCJA PRACOWNIKA</b></p>
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
-            <table align="center" class="none">
+            <table class="mb-3 mx-auto">
                 {% for field in form %}
                     <tr>
                         <td>{{ field.label_tag }}</td>
@@ -15,7 +15,7 @@
                 {% endfor %}
             </table>
 
-            <input type="submit" value="Zatwierdź">
+            <input type="submit" class="btn btn-secondary" value="Zatwierdź">
         </form>
     </div>
 {% endblock %}
