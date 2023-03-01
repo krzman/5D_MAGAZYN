@@ -12,8 +12,8 @@
 <script src="{% static 'js/bootstrap.bundle.js' %}"></script>
 {% if user.is_authenticated %}
     {#    ----------------------------------------#}
-    <nav class="navbar-nav">
-        <div class="container-fluid mt-3">
+    <nav class="navbar-nav sticky-top bg-body">
+        <div class="container-fluid mt-3 pb-3">
             <a href="{% url 'login' %}">
                 <img src="{% static 'img/logo.jpg' %}" width="150" class="float-start ms-5">
             </a>
