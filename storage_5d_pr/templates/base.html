@@ -14,8 +14,10 @@
     {#    ----------------------------------------#}
     <nav class="navbar-nav">
         <div class="container-fluid mt-3">
-            <img src="{% static 'img/logo.jpg' %}" width="150">
-            <ul class="nav justify-content-end">
+            <a href="{% url 'login' %}">
+                <img src="{% static 'img/logo.jpg' %}" width="150" class="float-start ms-5">
+            </a>
+            <ul class="nav justify-content-end me-5">
                 {# Narzędzia #}
                 <li class="nav-item">
                     <a class="nav-link dropdown-toggle link-dark" href="#" data-bs-toggle="dropdown">NARZĘDZIA</a>
