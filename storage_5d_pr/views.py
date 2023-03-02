@@ -137,9 +137,11 @@ class ConstructionView(LoginRequiredMixin, View):
 
     def get(self, request, construction_id):
         construction = Construction.objects.get(id=construction_id)
+        constructions = Construction.objects.all()
         tools = Tools.objects.all().filter(construction_id=construction_id)
         context = {
             'construction': construction,
+            'constructions': constructions,
             'tools': tools
         }
         return render(request, 'construction.html', context=context)
