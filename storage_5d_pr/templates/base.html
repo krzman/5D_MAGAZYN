@@ -22,8 +22,14 @@
                 <li class="nav-item">
                     <a class="nav-link dropdown-toggle link-dark" href="#" data-bs-toggle="dropdown">NARZĘDZIA</a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item link-dark" href="{% url 'tools_list' %}">LISTA</a></li>
-                        <li><a class="dropdown-item link-dark" href="{% url 'tools_add' %}">DODAJ</a></li>
+                        <ul class="list-inline">
+                            <li class="list-inline-item">
+                                <a class="dropdown-item link-dark" href="{% url 'tools_list' %}">LISTA</a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a class="dropdown-item link-dark" href="{% url 'tools_add' %}">DODAJ</a>
+                            </li>
+                        </ul>
                     </ul>
                 </li>
                 {# Budowy #}
@@ -33,8 +39,9 @@
                         <ul class="list-inline">
                             {% for site in constructions %}
                                 {% if 'Budowa' in site.name %}
-                                    <li class="list-inline-item"><a class="dropdown-item link-dark"
-                                                                    href="{% url 'construction' site.id %}"> {{ site.name }} {{ site.city }}</a>
+                                    <li class="list-inline-item">
+                                        <a class="dropdown-item link-dark"
+                                           href="{% url 'construction' site.id %}"> {{ site.name }} {{ site.city }}</a>
                                     </li>
                                 {% endif %}
                             {% endfor %}
@@ -49,7 +56,7 @@
                             {% for site in constructions %}
                                 {% if 'Budowa' not in site.name %}
                                     <li class="list-inline-item"><a class="dropdown-item link-dark"
-                                           href="{% url 'construction' site.id %}"> {{ site.name }} {{ site.city }}</a>
+                                                                    href="{% url 'construction' site.id %}"> {{ site.name }} {{ site.city }}</a>
                                     </li>
                                 {% endif %}
                             {% endfor %}
@@ -60,8 +67,12 @@
                 <li class="nav-item">
                     <a class="nav-link dropdown-toggle link-dark" href="#" data-bs-toggle="dropdown">PRACOWNICY</a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item link-dark" href="{% url 'workers_list' %}">LISTA</a></li>
-                        <li><a class="dropdown-item link-dark" href="{% url 'workers_add' %}">DODAJ</a></li>
+                        <ul class="list-inline">
+                            <li class="list-inline-item">
+                                <a class="dropdown-item link-dark" href="{% url 'workers_list' %}">LISTA</a></li>
+                            <li class="list-inline-item">
+                                <a class="dropdown-item link-dark" href="{% url 'workers_add' %}">DODAJ</a></li>
+                        </ul>
                     </ul>
                 </li>
                 <li class="nav-item">
