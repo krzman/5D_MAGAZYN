@@ -30,26 +30,30 @@
                 <li class="nav-item">
                     <a class="nav-link dropdown-toggle link-dark" href="#" data-bs-toggle="dropdown">BUDOWY</a>
                     <ul class="dropdown-menu">
-                        {% for site in constructions %}
-                            {% if 'Budowa' in site.name %}
-                                <li><a class="dropdown-item link-dark"
-                                       href="{% url 'construction' site.id %}"> {{ site.name }} {{ site.city }}</a>
-                                </li>
-                            {% endif %}
-                        {% endfor %}
+                        <ul class="list-inline">
+                            {% for site in constructions %}
+                                {% if 'Budowa' in site.name %}
+                                    <li class="list-inline-item"><a class="dropdown-item link-dark"
+                                                                    href="{% url 'construction' site.id %}"> {{ site.name }} {{ site.city }}</a>
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
                     </ul>
                 </li>
                 {# Magazyny #}
-                <li class="nav-item dropdown">
+                <li class="nav-item">
                     <a class="nav-link dropdown-toggle link-dark" href="#" data-bs-toggle="dropdown">MAGAZYNY</a>
                     <ul class="dropdown-menu">
-                        {% for site in constructions %}
-                            {% if 'Budowa' not in site.name %}
-                                <li><a class="dropdown-item link-dark"
-                                       href="{% url 'construction' site.id %}"> {{ site.name }} {{ site.city }}</a>
-                                </li>
-                            {% endif %}
-                        {% endfor %}
+                        <ul class="list-inline">
+                            {% for site in constructions %}
+                                {% if 'Budowa' not in site.name %}
+                                    <li class="list-inline-item"><a class="dropdown-item link-dark"
+                                           href="{% url 'construction' site.id %}"> {{ site.name }} {{ site.city }}</a>
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
                     </ul>
                 </li>
                 {# Pracownicy #}
