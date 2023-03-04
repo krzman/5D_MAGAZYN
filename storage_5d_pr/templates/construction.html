@@ -2,6 +2,9 @@
 {% load static %}
 
 {% block content %}
+    <!-- SCRIPTS -->
+    <script src="{% static 'js/btnToolsLocaktion.js' %}"></script>
+    <!-- ***** -->
     <div class="container text-center">
         <h3>
             {{ construction.name }} {{ construction.city }}
@@ -23,6 +26,7 @@
                 <th>PRZENIEŚ</th>
             </tr>
             </thead>
+
             {% for tool in tools %}
                 <tr {% if forloop.counter|divisibleby:'2' %} class="table-light" {% endif %}>
                     <td>{{ forloop.counter }}</td>
@@ -42,24 +46,29 @@
                                href="{% url 'history_single' tool.nr %}">POKAŻ</a></button>
                     </td>
                     <td class="align-middle text-center">
-                        <input type="checkbox" class="btn btn-secondary">
+                        <label>
+                            <input type="checkbox" class="btn btn-secondary" value="{{ tool.nr }}">
+                        </label>
                     </td>
                 </tr>
-
             {% endfor %}
             <!-- CHECKED BOX -->
             <tr class="bg-dark text-light text-center">
-                <td colspan="4" class="fw-bold">PRZENIEŚ ZANZACZONE</td>
-                <td colspan="2">
-                    <select class="form-select">
-                        {% for site in constructions %}
-                            <option>{{ site.name }} {{ site.city }}</option>
-                        {% endfor %}
-                    </select>
+                <td colspan="4" class="fw-bold">
+                    PRZENIEŚ ZANZACZONE
                 </td>
                 <td colspan="2">
-                    <button type="button" class="btn btn-secondary">
-                        <a class="link-light text-decoration-none" href="#">PRZENIEŚ</a>
+                    <label>
+                        <select class="form-select" id="site">
+                            {% for site in constructions %}
+                                <option value="{{ site.id }}">{{ site.name }} {{ site.city }}</option>
+                            {% endfor %}
+                        </select>
+                    </label>
+                </td>
+                <td colspan="3">
+                    <button type="button" class="btn btn-secondary link-light" id="btnMove">PRZENIEŚ
+                        {#                        <a class="link-light text-decoration-none" href="#">PRZENIEŚ</a>#}
                     </button>
                 </td>
             </tr>

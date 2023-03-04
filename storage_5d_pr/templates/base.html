@@ -4,12 +4,14 @@
 <head>
     {#    <link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet">#}
     <meta charset="UTF-8">
+    <title>5D Magazyn</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
-    <title>5D Magazyn</title>
+    <script src="{% static 'js/bootstrap.bundle.js' %}"></script>
+    <script src="{% static 'jquery/jquery-3.6.3.min.js' %}"></script>
 </head>
 <body>
-<script src="{% static 'js/bootstrap.bundle.js' %}"></script>
+
 {% if user.is_authenticated %}
     {#    ----------------------------------------#}
     <nav class="navbar-nav sticky-top bg-body">
@@ -122,7 +124,7 @@
 -->
 {% else %}
     <div class="container my-4 text-center">
-        <img src="{% static 'img/logo.jpg' %}">
+        <img src="{% static 'img/logo.jpg' %}" alt="Obrazek">
     </div>
 {% endif %}
 {% block content %}

@@ -2,6 +2,7 @@
 import http.client
 
 from django.shortcuts import render, redirect
+from django.http import HttpResponseRedirect
 from django.views import View
 from django.views.generic import CreateView, UpdateView
 from django.contrib.auth import authenticate, login, logout
@@ -139,12 +140,25 @@ class ConstructionView(LoginRequiredMixin, View):
         construction = Construction.objects.get(id=construction_id)
         constructions = Construction.objects.all()
         tools = Tools.objects.all().filter(construction_id=construction_id)
+        # form = FormToolsChangeLocation()
+        # print(form.as_p())
         context = {
             'construction': construction,
             'constructions': constructions,
-            'tools': tools
+            'tools': tools,
         }
         return render(request, 'construction.html', context=context)
+
+    def post(self, request, construction_id):
+        data = request.POST
+        site = data['location']
+        siteObject = Construction.objects.get(id=site)
+        for item in range(0, len(data) - 1):
+            toolObject = Tools.objects.get(nr=data[str(item)])
+            toolObject.construction = siteObject
+            toolObject.save()
+
+        return redirect('construction', construction_id)
 
 
 # --------------------------------------------------------------------------------------
