@@ -140,8 +140,6 @@ class ConstructionView(LoginRequiredMixin, View):
         construction = Construction.objects.get(id=construction_id)
         constructions = Construction.objects.all()
         tools = Tools.objects.all().filter(construction_id=construction_id)
-        # form = FormToolsChangeLocation()
-        # print(form.as_p())
         context = {
             'construction': construction,
             'constructions': constructions,
@@ -151,12 +149,16 @@ class ConstructionView(LoginRequiredMixin, View):
 
     def post(self, request, construction_id):
         data = request.POST
+        user = self.request.user
+        comment = 'Przenieś'
         site = data['location']
         siteObject = Construction.objects.get(id=site)
         for item in range(0, len(data) - 1):
             toolObject = Tools.objects.get(nr=data[str(item)])
             toolObject.construction = siteObject
             toolObject.save()
+            history_add(user, toolObject.nr, toolObject.type, toolObject.producer, toolObject.date, toolObject.workers,
+                        toolObject.construction,comment=comment)
 
         return redirect('construction', construction_id)
 
